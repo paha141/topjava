@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import static ru.javawebinar.topjava.util.TimeUtil.isBetweenHalfOpen;
+
 public class MealsUtil {
     public static void main(String[] args) {
         List<Meal> meals = Arrays.asList(
@@ -36,7 +38,7 @@ public class MealsUtil {
                 );
 
         return meals.stream()
-                .filter(meal -> TimeUtil.isBetweenHalfOpen(meal.getTime(), startTime, endTime))
+                .filter(meal -> isBetweenHalfOpen(meal.getTime(), startTime, endTime))
                 .map(meal -> createTo(meal, caloriesSumByDate.get(meal.getDate()) > caloriesPerDay))
                 .collect(Collectors.toList());
     }
